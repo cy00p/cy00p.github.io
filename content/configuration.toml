@@ -1,0 +1,57 @@
+# Due to how Astro handles type inference with this structure,
+# we need to prefix all configuration keys with an underscore.
+
+[_.site]
+baseUrl = "http://localhost:4321"
+
+[_.globalMeta]
+title = "cy00p"
+description = "offsec and cloud security"
+longDescription = "just security stuff, and some other weird things"
+cardImage = "https://cy00p.github.io/cy00p.webp"
+keywords = ["security", "malware", "aws", "cloud", "python", "go", "offsec", "forensics"]
+
+[_.blogMeta]
+title = "blog"
+description = "Practical wisdom, unfiltered thoughts, and hot takes."
+longDescription = "Security stuff, tech trends, and the occasional programming mishap."
+cardImage = "https://cy00p.github.io/cy00p.webp"
+keywords = ["security", "malware", "aws", "cloud", "python", "go", "offsec", "forensics"]
+
+[_.projectMeta]
+title = "projects"
+description = "A list of my security tools."
+longDescription = "All of my projects, inclusive of simple scripts, fuzzers, forensics and pentesting tools."
+cardImage = "https://cy00p.github.io/cy00p.webp"
+keywords = ["security", "malware", "aws", "cloud", "python", "go", "offsec", "forensics"]
+
+[_.notFoundMeta]
+title = "Hmmm.."
+description = "sorry, are you lost?"
+longDescription = "The page you are looking for does not exist. Maybe it never existed. Spooky."
+cardImage = "https://cy00p.github.io/cy00p.webp"
+
+[_.hero]
+title = "cy00p"
+subtitle = "~ security stuff ~"
+image = "https://cy00p.github.io/cy00p.webp"
+ctaText = "View Projects"
+ctaUrl = "/projects"
+
+[_.personal]
+name = "cy00p"
+githubProfile = "https://github.com/cy00p"
+twitterProfile = "https://x.com/cy00p"
+linkedinProfile = "https://linkedin.com/cy00p"
+
+[_.texts]
+articlesName = "Articles"
+projectsName = "Projects"
+viewAll = "View All"
+noArticles = "No articles found."
+noProjects = "No projects found."
+
+[_.menu]
+home = "/"
+projects = "/projects"
+blog = "/blog"
