@@ -6,7 +6,7 @@ longDescription: HTML is the foundation of all websites. This guide will walk yo
 cardImage: "https://cy00p.github.io/cy00p.webp"
 tags: ["code", "html"]
 readTime: 4
-featured: true
+featured: false
 timestamp: 2024-12-18T02:39:03+00:00
 ---
 

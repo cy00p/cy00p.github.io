@@ -44,10 +44,10 @@
   --color-zag-light-opaque: oklch(from var(--color-neutral-100) l c h / 0.5);
   --color-zag-dark-muted: var(--color-neutral-600);
   --color-zag-light-muted: var(--color-neutral-400);
-  --color-zag-accent-light: var(--color-emerald-400);
-  --color-zag-accent-light-muted: var(--color-emerald-300);
-  --color-zag-accent-dark: var(--color-emerald-600);
-  --color-zag-accent-dark-muted: var(--color-emerald-800);
+  --color-zag-accent-light: var(--color-fuchsia-400);
+  --color-zag-accent-light-muted: var(--color-fuchsia-300);
+  --color-zag-accent-dark: var(--color-fuchsia-600);
+  --color-zag-accent-dark-muted: var(--color-fuchsia-800);
 }
 
 @layer base {

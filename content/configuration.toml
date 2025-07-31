@@ -2,7 +2,7 @@
 # we need to prefix all configuration keys with an underscore.
 
 [_.site]
-baseUrl = "http://localhost:4321"
+baseUrl = "http://cy00p.github.io"
 
 [_.globalMeta]
 title = "cy00p"
