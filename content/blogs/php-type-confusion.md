@@ -11,7 +11,6 @@ rating: advanced
 timestamp: 2022-12-16T01:01:01+00:00
 ---
 
-##### Type Juggling / Type Coercion
 Consider the following program:
 ```php
 	$example_int = 7
@@ -30,7 +29,7 @@ Here's more:
 	(0 == "Admin_Password") // True
 ```
 
-##### Conditions of Exploitation
+## Conditions of Exploitation
 - It's not always exploitable, most often needs to be combined with a *deserialization flaw*. 
 - That's because POST, GET parameters and Cookie values are, most of the time, passed as strings or arrays into the program. If a POST parameter is passed as a string, no type conversion would be needed i.e.
 ```php
@@ -42,7 +41,7 @@ Here's more:
 	{"password": 0}		// Here the attacker exploits type juggling
 ```
 
-##### Mitigation
+## Mitigation
 1. Just like in Javascript, use strict comparison operators
 ```php
 	// loose comparison operator vs strict comparison operator

@@ -6,6 +6,7 @@ longDescription: Boron is a python script that uses AWS credentials to check for
 cardImage: "https://cy00p.github.io/boron.webp"
 tags: ["aws", "python"]
 githubUrl: https://github.com/cy00p/boron
+liveDemoUrl: http://localhost
 timestamp: 2025-02-24T02:39:03+00:00
 featured: true
 ---

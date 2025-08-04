@@ -27,13 +27,13 @@ keywords = ["security", "malware", "aws", "cloud", "python", "go", "offsec", "fo
 
 [_.notFoundMeta]
 title = "Hmmm.."
-description = "sorry, are you lost?"
+description = "sorry 🥲??"
 longDescription = "The page you are looking for does not exist. Maybe it never existed. Spooky."
 cardImage = "https://cy00p.github.io/cy00p.webp"
 
 [_.hero]
 title = "cy00p"
-subtitle = "~ offsec ~"
+subtitle = "security | cloud | purple team"
 image = "https://cy00p.github.io/cy00p.webp"
 ctaText = "View Projects"
 ctaUrl = "/projects"
@@ -42,7 +42,7 @@ ctaUrl = "/projects"
 name = "cy00p"
 githubProfile = "https://github.com/cy00p"
 twitterProfile = "https://x.com/cy00p"
-linkedinProfile = "https://linkedin.com/cy00p"
+linkedinProfile = "https://linkedin.com/"
 
 [_.texts]
 articlesName = "Articles"
