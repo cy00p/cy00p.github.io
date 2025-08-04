@@ -6,7 +6,7 @@ longDescription: A brief walkthrough on two interesting web challenges from Chas
 cardImage: "https://cy00p.github.io/cy00p.webp"
 tags: ["express", "git", "python", "sqlite", "scripting", "jwt"]
 readTime: 10
-featured: false
+featured: true
 timestamp: 2025-08-03T19:46:03+00:00
 ---
 
@@ -16,7 +16,7 @@ I'll try to keep the walkthroughs brief. That being said, in case of any questio
 ### TLDR
 So this was a website, running express in the backend (you could tell from the headers), and a simple login page.
 Now if you fuzz a little, you would discover a `/dashboard` path, that obviously wouldn't allow you to access it without being logged in.
-You had to forge a jwt token cookie, and since jwt signing was disabled, you would be able to login as `admin` with the following fields set in the user data field in the jwt: 
+One way to go about it is to forge a jwt token cookie, and since jwt signing was disabled, you would login as `admin` with the following fields set in the user data field in the jwt: 
 - `username` could be anything i.e. `cat`
 - `isAdmin` had to be set to `true`
 

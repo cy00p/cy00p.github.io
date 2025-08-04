@@ -56,9 +56,9 @@ const featuredArticles = (await getCollection("blog", (e) => e.data.featured)).m
     <Hero />
   </Section>
   <Section>
-    <FeaturedProjects featuredProjects={featuredProjects} />
+    <FeaturedArticles featuredArticles={featuredArticles} />
   </Section>
   <Section>
-    <FeaturedArticles featuredArticles={featuredArticles} />
+    <FeaturedProjects featuredProjects={featuredProjects} />
   </Section>
 </Layout>

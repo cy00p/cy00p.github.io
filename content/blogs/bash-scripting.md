@@ -7,7 +7,7 @@ cardImage: "https://cy00p.github.io/cy00p.webp"
 tags: [misc','bash','scripting','linux']
 rating: 'medium'
 readTime: 10
-featured: true
+featured: false
 timestamp: 2023-01-04T10:10:03+00:00
 ---
 
