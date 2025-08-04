@@ -33,7 +33,7 @@ cardImage = "https://cy00p.github.io/cy00p.webp"
 
 [_.hero]
 title = "cy00p"
-subtitle = "security | cloud | purple team"
+subtitle = "offsec"
 image = "https://cy00p.github.io/cy00p.webp"
 ctaText = "View Projects"
 ctaUrl = "/projects"
