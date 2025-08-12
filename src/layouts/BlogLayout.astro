@@ -58,14 +58,23 @@ const { data: config } = await getConfigurationCollection();
   </Fragment>
   <Section class="pt-8">
     <div class="flex flex-col gap-4 mt-8 mb-16">
-      <h1
-        class="text-3xl sm:text-4xl leading-normal sm:leading-normal font-display"
-      >
+      <h1 class="text-3xl sm:text-4xl leading-normal sm:leading-normal font-display">
         {frontmatter.title}
       </h1>
-      <div class="flex justify-between">
+            <div class="flex text-sm gap-3">
+        {
+          frontmatter.tags
+            ? frontmatter.tags.map((tag) => (
+                <span class="-zag-text -zag-bg zag-transition font-semibold py-1 px-2">
+                  {tag}
+                </span>
+              ))
+            : null
+        }
+      </div>
+      <div class="flex italic justify-between">
         <span>{articleDate}</span>
-        <span>{frontmatter.readTime} min</span>
+        <span>read time: {frontmatter.readTime} min</span>
       </div>
     </div>
     <Prose>

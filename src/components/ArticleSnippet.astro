@@ -6,24 +6,33 @@ export type Props = {
   title: string;
   description: string;
   url: string;
-  duration?: string;
-  timestamp?: Date;
+  tags: string[];
 };
 
-const { title, description, url, duration, timestamp } = Astro.props;
+const { title, description, url, tags } = Astro.props;
 ---
 
 <div class="relative zag-text zag-transition flex flex-col gap-3 mb-8 hover-zag-dotted-grid">
   <Anchor url={url} class="text-xl">
     {title}
   </Anchor>
-  <p class="">
+  <p class="zag-text zag-transition">
     {description}
   </p>
-  <div
+  <div class="flex flex-row wrap justify-end">
+    {
+      tags.map((tag) => (
+        <span class="zag-transition text-sm italic">
+          {tag}
+        </span><span>|</span>
+      ))
+    }
+  </div>
+
+  <!-- <div
     class="zag-muted zag-transition flex justify-between items-center"
   >
     {timestamp ? <p>{processArticleDate(timestamp)}</p> : null}
     {duration ? <p>{duration}</p> : null}
-  </div>
+  </div> -->
 </div>

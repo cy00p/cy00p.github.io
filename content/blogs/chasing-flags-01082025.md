@@ -5,12 +5,13 @@ description: Web Challenges Walkthrough
 longDescription: A brief walkthrough on two interesting web challenges from ChasingFlags "Can You Hack It?" Round 1 CTF challenge held on 01/08/2025 
 cardImage: "https://cy00p.github.io/cy00p.webp"
 tags: ["express", "git", "python", "sqlite", "scripting", "jwt"]
-readTime: 10
+readTime: 12
 featured: true
 timestamp: 2025-08-03T19:46:03+00:00
 ---
 
-I'll try to keep the walkthroughs brief. That being said, in case of any questions, suggestions or improvements, ping me on my X account. Rightio then:
+I'll try to keep the walkthroughs brief. That being said, in case of any questions, suggestions or improvements, ping me on my X account.<br />
+Rightio then:
 
 ## Vibe Coder
 ### TLDR
@@ -52,8 +53,9 @@ Feeding this to our website, we get an interesting response - we’re now authen
 At this point, you can tell the dashboard doesn’t reveal anything, since we’re not admin. One could try to set the username to admin and see what comes up, but that wouldn’t work (‘one’ is me, it didn’t work). But, if you’ve interacted with JWTs before, usually you set an admin property in the JWT, and that’s like the normal way these applications work. So we can try adding an admin property in the JWT data field, and see if anything changes. There are many ways to try that, through a role key, admin key, isAdmin key, and the values could be true or 1 . Trying this out, isAdminworks out and we get our flag:
 ![flag](../../src/assets/01082025/10.png)
 
-### Intended Way?
-Express apps are usually quite robust when it comes to directory fuzzing; if an endpoint such as /path is only enabled through GET requests, sending POST requests will return a 404 Not Found i.e.
+### Intended Way!?
+Express middleware is quite robust, and you can tell from this app if you try directory fuzzing.
+If an arbitrary endpoint such as `/path` is only enabled through GET requests, sending POST requests will return a 404 Not Found i.e.
 ![express_robustness_on_paths](../../src/assets/01082025/11.png)
 
 So we could have an existing path like `/path/to/existing_path` but trying to `GET /path` will return a 404, which means that our directory fuzzers might not hit anything (I was using `feroxbuster` and `ffuf`).
@@ -103,17 +105,19 @@ At this point, I thought of trying to do some fuzzing and see if we can identify
 We discover the `/debug` path, which is kind of interesting. When we make a GET request to that path, we get our IP address returned to us and some interesting info:
 ![debug_endpoint](../../src/assets/01082025/22.png)
 
-From that text, we get a hint that this `/debug` path was probably supposed to be disabled, since it might interfere with the login page somehow. After giving it some thought, I decided to test out various HTTP methods on that path, and the response to a `POST request` was intriguing:
+From that text, we get a hint that this `/debug` path was probably supposed to be disabled, since it might interfere with the login page somehow.
+After giving it some thought, I decided to test out various HTTP methods on that path, and the response to a `POST request` was intriguing:
 ![post_response_debug](../../src/assets/01082025/23.png)
 
-The POST method is enabled, and is asking us to provide an IP address. Based on the previous sign in requests, the content type was `x-www-form-urlencoded` , so we can set that header and provide the IP address in the data field (using `curl`, we don’t have to set the content type though):
+The POST method is enabled, and is asking us to provide an IP address.
+Based on the previous sign in requests, the content type was `x-www-form-urlencoded` , so we can set that header and provide the IP address in the data field (using `curl`, we don’t have to set the content type though):
 ![adding_ip_address](../../src/assets/01082025/24.png)
 
 Our IP address has been added to the database, but what does that mean? Let’s try to visit the login page, and try to login again, this time we enter a random username and password, but without solving the captcha:
 ![back_to_login_page](../../src/assets/01082025/25.png)
 
 Apparently, the error we get is invalid credentials, and not invalid captcha. So setting our ip address in the debug endpoint helped us bypass the captcha.
-One problem solved, now the monster awaits. So, what we can do from here?
+One problem solved, another challenge awaits. So, what we can do from here?
 
 #### SQL Injection
 In BurpSuite, when we try to login, having scrapped off the data fields with captcha info, and without setting the IP in the debug path, we get a `500 Error` Response:
@@ -131,8 +135,71 @@ We have a web application firewall probably protecting the web server against in
 At this point , I felt injection was possible. But first, we need to get a valid injection string, that can bypass the WAF, but also not error out the server. After trial and error, I got something, and this actually confirmed that we're dealing with a sqlite database:
 ![confirm_sqlite_db](../../src/assets/01082025/30.png)
 
+The `||` is a concatenation operator in sqlite, meaning it's used to combine two strings i.e. a query `select "aa"||"bb"||"cc"` would yield `aabbcc`
+With that done, we can try to pass in a string after the `||` operator, and and maybe comment out the rest of the query using `-- `.
+> if you pass in the payload like this `'||'asdf'-- `, the WAF would error out because of the `-- ` at the end. But if you put the string in parenthesis, i.e. `'||('asdf')-- `, it calms down. I can't explain why 🤷‍♂️.
 
-> TO BE CONTINUED 
+We can now login as admin:
+![login_as_admin](../../src/assets/01082025/31.png)
+
+The admin page doesn't have anything interesting, so we can go back to our database and try to extract more info.
+
+#### Error-based Technique
+Inside the parenthesis, we can replace that `admin` string with an sql query that returns a string i.e. we can try to put `select sqlite_version`
+> The image below has a different structure of queries. My bad, it was very late when I was writing this. Putting one pipe character `|` is still valid, but it does a bitwise XOR operation on sqlite. It can still be used to build valid queries, but it's better to use the double pipe characters `||` to do a concatenation and construct more meaningful queries.
+
+![query_in_place_of_str](../../src/assets/01082025/32.png)
+
+When a query is valid, we get a `200 OK` response with that invalid credentials text, and when it's not, we get a `500 INTERNAL SERVER ERROR`.<br />
+We can use this error-based technique to extract the database contents, and we would need to write a script (`sqlmap` was just going bananas here, pretty sure it's a skill issue).<br />
+How I proceeded from here to get the flag is a bit hilarious though (I did a lot of trial and error, the steps might be a bit shallow but I hope you get it);
+1. I made the assumption that we had a table called `users`, and there's a high chance we have the columns `id`,`username` and `password`, right?
+2. The string 'password' was blacklisted by the WAF, but since both fields are injectable, I thought about using both fields to build a query (overthinking at its best lol), and IT WORKED
+```python
+
+return f"username='||(SELECT username FROM users WHERE id LIKE 21 AND &password= LIKE '"+payload+"')--"
+
+
+```
+![query_from_both_fields](../../src/assets/01082025/33.png)
+
+A lot is going on here. The reason I'm using `LIKE` to write the conditions is because our WAF had blocked logical operators i.e. if you tried to do `id=1`, you would get a WAF error. By the time I was attempting this challenge, my id was `21` ( found out after running some other queries), and I just wanted to confirm if I can correctly extract my password through this. In the payload section, I would bruteforce the characters, and terminate with a `%`, which is a wildcard in sql.
+
+3. My password was supposed to be `cy00p`, and before I started using the script, the payload `c%` was producing an error on BurpSuite. Something was off. I couldn't tell what was going on, so I decided to proceed running the script.
+
+4. After the script run, we got the column name `__authpw__` instead of the actual password (no screenshot here, instance was already down). Huh, well I can't explain it but hey, we got the column name.
+5. So I just modified the script to get the admin password and voila!
+```python
+
+return f"username='||(SELECT username FROM users WHERE id LIKE 1 AND authpw LIKE '"+payload+"')-- &password="
+
+
+```
+![running_script](../../src/assets/01082025/34.png)
+
+
+#### BETTER WAY
+Later on I decided to think of a better way to extract data in this scenario, turns out there was. <br />
+After looking at this [repo](https://swisskyrepo.github.io/PayloadsAllTheThings/SQL%20Injection/SQLite%20Injection/#sqlite-error-based), we can use 'CASE', which is similar to `if` conditions in other langs, to extract info from the db.
+Here's a sample payload that you could use:
+```sql
+
+AND CASE WHEN [BOOLEAN_QUERY] THEN 1 ELSE load_extension(1) END
+
+
+```
+In the boolean query, you could try sth like this: `'a' LIKE 'a'`, which evaluates to `true` and the server doesn't crash, while `'b' LIKE 'a'` evaluates to false, and we get a `500 ERROR`<br />
+With [pragma functions](https://sqlite.org/pragma.html), you can extract all the db tables, columns, and then all the records present.<br />
+An example of a payload to extract columns from a table `users` looks like this:
+
+```python
+
+return f"username='||(CASE WHEN (SELECT GROUP_CONCAT(name) FROM pragma_table_info('users') ) LIKE '"+payload+"' THEN 1 ELSE load_extension(1) END)-- &password="
+
+
+```
+After tinkering around, I extracted three tables (`whitelistedip, users, sqlite`) and the `users` table had three columns: `id, username, authpw`
+
 
 
 

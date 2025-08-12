@@ -26,8 +26,7 @@ const { data: config } = await getConfigurationCollection();
             title={article.title}
             description={article.description}
             url={article.url}
-            timestamp={article.timestamp}
-            duration={`${article.readTime} min`}
+            tags={article.tags ?? []}
           />
         </li>
       ))
