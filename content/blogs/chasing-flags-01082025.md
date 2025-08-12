@@ -77,7 +77,7 @@ From there, you login with those credentials, which are valid but it turns out t
 In this challenge, there were three challenges we had to overcome.
 1. First, you had to identify a `/debug` path that would allow you to set an ip address such that you can login without solving the captcha.
 2. Discover the login page was vulnerable to blind sql injection, but was being protected by a web application firewall
-3. Now the hard part, crafting queries that would bypass the WAF and also leak the database
+3. Now the awesome part, crafting queries that would bypass the WAF and also leak the database
 
 ### Methodology
 Accessing the endpoint, we're directed to a login page:
@@ -137,5 +137,5 @@ At this point , I felt injection was possible. But first, we need to get a valid
 
 
 ## OUTRO
-These were great challenges, huge shoutout to [ChasingFlags](https://linkedin.com/company/chasingflags/) and the challenge creators.
+These were great challenges, huge shoutout to [ChasingFlags](https://linkedin.com/company/chasingflags/).
 There was a ton to learn, and I can't wait to see what they set up in the upcoming challenges.

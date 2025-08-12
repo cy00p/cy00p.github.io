@@ -23,4 +23,7 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
+# unpublished blogs or projects
+*.tmp.md
+
 pnpm-lock.yaml
