@@ -185,9 +185,9 @@ const configuration = defineCollection({
       githubProfile: z.string().url().optional(),
 
       /**
-       * The Twitter profile URL of the site owner or author.
+       * The X profile URL of the site owner or author.
        */
-      twitterProfile: z.string().url().optional(),
+      xProfile: z.string().url().optional(),
 
       /**
        * The LinkedIn profile URL of the site owner or author.
@@ -312,57 +312,59 @@ const blog = defineCollection({
  */
 const project = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./content/projects" }),
-  schema: z.object({
-    /**
-     * The title of the project.
-     */
-    title: z.string(),
-    
-    /**
-     * The slug for the project, used in the URL.
-     */
-    slug: z.string().optional(),
+  schema: z
+    .object({
+      /**
+       * The title of the project.
+       */
+      title: z.string(),
 
-    /**
-     * The short description of the project, used in Open Graph metadata and as a fallback for SEO.
-     */
-    description: z.string(),
+      /**
+       * The slug for the project, used in the URL.
+       */
+      slug: z.string().optional(),
 
-    /**
-     * The long description of the project, used in Open Graph metadata and as a fallback for SEO.
-     */
-    longDescription: z.string().optional(),
+      /**
+       * The short description of the project, used in Open Graph metadata and as a fallback for SEO.
+       */
+      description: z.string(),
 
-    /**
-     * The URL of the card image for social media sharing.
-     */
-    cardImage: z.string().url().optional(),
+      /**
+       * The long description of the project, used in Open Graph metadata and as a fallback for SEO.
+       */
+      longDescription: z.string().optional(),
 
-    /**
-     * The tags associated with the project, used for categorization and filtering.
-     */
-    tags: z.array(z.string()).optional(),
+      /**
+       * The URL of the card image for social media sharing.
+       */
+      cardImage: z.string().url().optional(),
 
-    /**
-     * The github repository URL for the project.
-     */
-    githubUrl: z.string().url().optional(),
+      /**
+       * The tags associated with the project, used for categorization and filtering.
+       */
+      tags: z.array(z.string()).optional(),
 
-    /**
-     * The live demo URL for the project, if applicable.
-     */
-    liveDemoUrl: z.string().url().optional(),
+      /**
+       * The github repository URL for the project.
+       */
+      githubUrl: z.string().url().optional(),
 
-    /**
-     * The timestamp of the project, used for sorting and displaying the date.
-     */
-    timestamp: z.date().transform((val) => new Date(val)),
+      /**
+       * The live demo URL for the project, if applicable.
+       */
+      liveDemoUrl: z.string().url().optional(),
 
-    /**
-     * Whether the project is featured on the homepage.
-     */
-    featured: z.boolean().default(false),
-  }).transform((data) => {
+      /**
+       * The timestamp of the project, used for sorting and displaying the date.
+       */
+      timestamp: z.date().transform((val) => new Date(val)),
+
+      /**
+       * Whether the project is featured on the homepage.
+       */
+      featured: z.boolean().default(false),
+    })
+    .transform((data) => {
       const slug =
         data.slug ??
         data.title

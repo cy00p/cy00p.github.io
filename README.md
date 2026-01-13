@@ -1,3 +1,3 @@
 Hi there :)
 
-Click [here](https://cy00p.github.io) to view the live website!
+Click [here](https://cy00p.online) to view the live website!

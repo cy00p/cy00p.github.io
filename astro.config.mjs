@@ -7,5 +7,5 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  site: 'https://cy00p.github.io'
+  site: "https://cy00p.online",
 });
