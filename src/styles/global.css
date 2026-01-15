@@ -31,7 +31,7 @@
 
 /*
  Welcome! Colors originate from these theme variables, feel
- free to change them! 
+ free to change them!
 */
 
 @theme {
@@ -87,7 +87,7 @@
       background-color: var(--color-zag-light);
     }
   }
-  
+
   .zag-text {
     color: var(--color-zag-dark);
     :where(.dark, .dark *) & {
@@ -179,5 +179,14 @@
 
   .opsz {
     font-variation-settings: "opsz" 72;
+  }
+  h1 {
+      color: oklch(51.1% 0.096 186.391)
+  }
+  h2,h3 {
+      color: oklch(75% 0.183 55.934)
+  }
+  h4 {
+      color: oklch(59.2% 0.249 0.584)
   }
 }

@@ -40,11 +40,13 @@ ctaUrl = "/projects"
 
 [_.personal]
 name = "cy00p"
+htbProfile = "https://app.hackthebox.com/public/users/875685"
 githubProfile = "https://github.com/cy00p"
 xProfile = "https://x.com/cy00p"
 linkedinProfile = "https://linkedin.com/in/cy00p"
 leetcodeProfile = "https://leetcode.com/u/cy00p"
-htbProfile = "https://app.hackthebox.com/public/users/875685"
+mailingProfile = "mailto:hello@cy00p.online"
+
 
 
 [_.texts]

@@ -147,12 +147,12 @@ const configuration = defineCollection({
       /**
        * The title displayed in the hero section.
        */
-      title: z.string().default("Cy00p"),
+      title: z.string().default("cy00p"),
 
       /**
        * The subtitle displayed in the hero section.
        */
-      subtitle: z.string().default("Retro-Inspired Theme &<br>Built for Astro"),
+      subtitle: z.string().default("**Howdy**"),
 
       /**
        * The URL of the hero image, used as a background image in the hero section.
@@ -177,7 +177,7 @@ const configuration = defineCollection({
       /**
        * The name of the site owner or author, used in various places throughout the site.
        */
-      name: z.string().default("Cy00p"),
+      name: z.string().default("cy00p"),
 
       /**
        * The GitHub profile URL of the site owner or author.
@@ -193,6 +193,9 @@ const configuration = defineCollection({
        * The LinkedIn profile URL of the site owner or author.
        */
       linkedinProfile: z.string().url().optional(),
+      htbProfile: z.string().url().optional(),
+      leetcodeProfile: z.string().url().optional(),
+      mailingProfile: z.string().optional(),
     }),
 
     /**

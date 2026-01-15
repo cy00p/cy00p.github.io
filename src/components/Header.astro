@@ -36,7 +36,16 @@ const { data: config } = await getConfigurationCollection();
             }
         </div>
         <div class="flex gap-4 px-4 sm:px-0">
-
+            {
+                config.personal.mailingProfile && (
+                    <Anchor
+                        url={`${config.personal.mailingProfile}&subject=Hi%20there👋`}
+                        aria-label={`${config.personal.name} X Profile`}
+                    >
+                        say hi!
+                    </Anchor>
+                )
+            }
             <ThemeToggle />
         </div>
     </nav>
