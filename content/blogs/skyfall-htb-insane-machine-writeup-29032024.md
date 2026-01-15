@@ -6,7 +6,7 @@ longDescription: A detailed writeup on how I did the Skyfall HTB insane machine
 cardImage: "https://cy00p.github.io/cy00p.webp"
 tags: ["MinIO", "nginx", "vault", "api", "otp", "flask"]
 readTime: 25
-featured: true
+featured: false
 timestamp: 2024-03-29T15:13:30+00:00
 ---
 
