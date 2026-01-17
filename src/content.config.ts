@@ -150,11 +150,6 @@ const configuration = defineCollection({
       title: z.string().default("cy00p"),
 
       /**
-       * The subtitle displayed in the hero section.
-       */
-      subtitle: z.string().default("**Howdy**"),
-
-      /**
        * The URL of the hero image, used as a background image in the hero section.
        */
       image: z.string().url().optional(),
@@ -270,11 +265,6 @@ const blog = defineCollection({
       longDescription: z.string().optional(),
 
       /**
-       * The URL of the card image for social media sharing.
-       */
-      cardImage: z.string().url().optional(),
-
-      /**
        * The tags associated with the blog post, used for categorization and filtering.
        */
       tags: z.array(z.string()).optional(),
@@ -336,11 +326,6 @@ const project = defineCollection({
        * The long description of the project, used in Open Graph metadata and as a fallback for SEO.
        */
       longDescription: z.string().optional(),
-
-      /**
-       * The URL of the card image for social media sharing.
-       */
-      cardImage: z.string().url().optional(),
 
       /**
        * The tags associated with the project, used for categorization and filtering.

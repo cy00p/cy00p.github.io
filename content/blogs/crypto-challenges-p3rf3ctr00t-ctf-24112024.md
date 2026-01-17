@@ -3,7 +3,6 @@ title: Crypto Challenges Writeup - p3rf3ctr00t CTF 2024
 slug: crypto-challenges-p3rf3ctr00t-ctf-24112024
 description: Writeup of two crypto challenges for p3rf3ctr00t CTF 2024
 longDescription: A writeup of two crypto challenges for p3rf3ctr00t CTF 2024, that involved solving an asymmetric encryption (RSA) challenge and a linear equations challenge that involved big numbers.
-cardImage: "https://cy00p.github.io/cy00p.webp"
 tags: ["linear-equations", "rsa", "crypto", "pseudorandom"]
 readTime: 8
 featured: false

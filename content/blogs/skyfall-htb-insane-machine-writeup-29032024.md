@@ -3,7 +3,6 @@ title: Skyfall - HTB Machine Writeup
 slug: skyfall-htb-insane-machine-writeup-29032024
 description: Writeup of the Skyfall HTB Insane Machine
 longDescription: A detailed writeup on how I did the Skyfall HTB insane machine
-cardImage: "https://cy00p.github.io/cy00p.webp"
 tags: ["MinIO", "nginx", "vault", "api", "otp", "flask"]
 readTime: 25
 featured: false

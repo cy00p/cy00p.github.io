@@ -33,7 +33,6 @@ cardImage = "https://cy00p.github.io/cy00p.webp"
 
 [_.hero]
 title = "cy00p"
-subtitle = "*************"
 image = "https://cy00p.github.io/cy00p.webp"
 ctaText = "View Projects"
 ctaUrl = "/projects"
@@ -46,8 +45,6 @@ xProfile = "https://x.com/cy00p"
 linkedinProfile = "https://linkedin.com/in/cy00p"
 leetcodeProfile = "https://leetcode.com/u/cy00p"
 mailingProfile = "mailto:hello@cy00p.online"
-
-
 
 [_.texts]
 articlesName = "Articles"

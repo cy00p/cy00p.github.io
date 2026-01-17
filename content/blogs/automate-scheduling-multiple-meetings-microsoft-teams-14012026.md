@@ -3,7 +3,6 @@ title: How to Automate Scheduling for Multiple Meetings in Microsoft Teams
 slug: automate-scheduling-multiple-meetings-microsoft-teams-14012026
 description: Automate Scheduling of Multiple Meetings in MS Teams
 longDescription: An article on how to automate the scheduling of multiple meetings in Microsoft Teams through Microsoft's productivity app Power Automate.
-cardImage: "https://cy00p.github.io/cy00p.webp"
 tags: ["Microsoft 365", "Power Automate", "Excel", "Word"]
 readTime: 15
 featured: true
